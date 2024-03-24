@@ -1,0 +1,38 @@
+[package]
+name = "pyo3_start"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "pyo3_example"
+crate_type = ["cdylib"]
+
+# Needs config.toml for 'cargo test':
+[dependencies]
+pyo3 = { git = "https://github.com/pyo3/pyo3", features = ["extension-module"] }
+
+## Run "cargo test --no-default-features" with the following dependencies,
+## but note that LD_LIBRARY_PATH still needs to be set.
+## https://pyo3.rs/v0.7.0-alpha.1/advanced.html#testing
+#[dependencies.pyo3]
+#git = "https://github.com/pyo3/pyo3"
+#
+#[features]
+#extension-module = ["pyo3/extension-module"]
+#default = ["extension-module"]
+
+
+# To run "cargo test":
+#   $ export RUSTFLAGS="-C link-arg=-L/home/david/git/github/pyenv/pyenv.git/versions/3.12.2/lib -C link-arg=-lpython3.12"
+#   $ LD_LIBRARY_PATH=/home/david/git/github/pyenv/pyenv.git/versions/3.12.2/lib:$LD_LIBRARY_PATH cargo test
+#
+# Alternatively, to avoid setting LD_LIBRARY_PATH:
+#   $ export RUSTFLAGS="-C link-arg=-Wl,-rpath,/home/david/git/github/pyenv/pyenv.git/versions/3.12.2/lib -C link-arg=-L/home/david/git/github/pyenv/pyenv.git/versions/3.12.2/lib -C link-arg=-lpython3.12"
+#
+# Alternatively, see .cargo/config.toml.
+#
+# Lastly, look at the commented code above, but still needs LD_LIBRARY_PATH.
+
+

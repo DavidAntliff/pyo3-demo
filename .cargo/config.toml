@@ -1,0 +1,6 @@
+[target.'cfg(all())']
+rustflags = [
+    "-C", "link-arg=-Wl,-rpath,/home/david/git/github/pyenv/pyenv.git/versions/3.12.2/lib",
+    "-C", "link-arg=-L/home/david/git/github/pyenv/pyenv.git/versions/3.12.2/lib",
+    "-C", "link-arg=-lpython3.12",
+]
