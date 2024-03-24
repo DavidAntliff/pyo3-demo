@@ -25,7 +25,7 @@ fn fibonacci(n: usize) -> PyResult<usize> {
 /// the `lib.name` setting in the `Cargo.toml`, else Python will not be able to
 /// import the module.
 #[pymodule]
-fn pyo3_example(m: &Bound<'_, PyModule>) -> PyResult<()> {
+fn rust_lib_example(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
     m.add_function(wrap_pyfunction!(new_list, m)?)?;
     m.add_function(wrap_pyfunction!(fibonacci, m)?)?;
@@ -35,6 +35,17 @@ fn pyo3_example(m: &Bound<'_, PyModule>) -> PyResult<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_sum_as_string() {
+        assert_eq!(sum_as_string(1, 2).unwrap(), "3");
+    }
+
+    #[test]
+    fn test_new_list() {
+        assert_eq!(new_list(42, 7).unwrap(), vec![42; 7]);
+        assert_eq!(new_list(0, 1).unwrap(), vec![0]);
+    }
 
     #[test]
     fn test_fibonacci() {

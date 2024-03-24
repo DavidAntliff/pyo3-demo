@@ -1,4 +1,4 @@
-from pyo3_example import sum_as_string, new_list, fibonacci
+from rust_lib_example import sum_as_string, new_list, fibonacci
 
 
 def main():
@@ -8,7 +8,7 @@ def main():
     print(li)
 
     n = 20
-    print("The first {n} Fibonacci numbers are:")
+    print(f"The first {n} Fibonacci numbers are:")
     for i in range(1, n + 1):
         print(f"{i}: {fibonacci(i)}")
 
